@@ -1,18 +1,17 @@
 package com.HospitalMangagmentSystem.demo.Service;
 
-import java.util.Date;
-import java.util.List;
-
-import com.HospitalMangagmentSystem.demo.domain.DoctorsVisit;
-import com.HospitalMangagmentSystem.demo.domain.Patients;
+import com.HospitalMangagmentSystem.demo.Dto.PatientDto;
 import com.HospitalMangagmentSystem.demo.Exception.DataNotFoundException;
 import com.HospitalMangagmentSystem.demo.constants.MedicalUtil;
+import com.HospitalMangagmentSystem.demo.domain.DoctorsVisit;
+import com.HospitalMangagmentSystem.demo.domain.Patients;
+import com.HospitalMangagmentSystem.demo.repository.PatientRepository;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.HospitalMangagmentSystem.demo.Dto.PatientDto;
-import com.HospitalMangagmentSystem.demo.repository.PatientRepository;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import java.util.Date;
+import java.util.List;
 
 @Component
 @JsonDeserialize
@@ -213,6 +212,7 @@ public class PatientserviceImplementation implements PatientService {
 
 
 	}
+
 	@Override
 	public Patients addRoom(PatientDto patientDto, int id) {
 		// TODO Auto-generated method stub
@@ -245,6 +245,16 @@ public class PatientserviceImplementation implements PatientService {
 		patient.setStatus("none");
 		patient.setDoctorid(0);
 		return patrep.save(patient);
+	}
+	@Override
+	public Patients updatepStatus(PatientDto patientDto, int id) {
+		// TODO Auto-generated method stub
+		Patients patient =patrep.findById(id).orElseThrow(()->
+				new DataNotFoundException("patient with id " + id + " not found") );
+		patient.setpStatus(patientDto.getpStatus());
+		return patrep.save(patient);
+
+
 	}
 
 }

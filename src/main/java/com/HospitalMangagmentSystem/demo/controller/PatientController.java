@@ -1,21 +1,18 @@
 package com.HospitalMangagmentSystem.demo.controller;
 
 
-	import java.net.URI;
-	import java.util.List;
-
-	import javax.transaction.Transactional;
-
-	import com.HospitalMangagmentSystem.demo.Service.PaymentService;
-	import com.HospitalMangagmentSystem.demo.domain.Patients;
-	import com.HospitalMangagmentSystem.demo.domain.Payment;
-	import org.springframework.beans.factory.annotation.Autowired;
-	import org.springframework.http.ResponseEntity;
-	import org.springframework.web.bind.annotation.*;
-	import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
 import com.HospitalMangagmentSystem.demo.Dto.PatientDto;
 import com.HospitalMangagmentSystem.demo.Service.PatientService;
+import com.HospitalMangagmentSystem.demo.Service.PaymentService;
+import com.HospitalMangagmentSystem.demo.domain.Patients;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
+import javax.transaction.Transactional;
+import java.net.URI;
+import java.util.List;
 
     @CrossOrigin(origins = "*", maxAge = 200000)
 	@RestController
@@ -32,7 +29,6 @@ import com.HospitalMangagmentSystem.demo.Service.PatientService;
 		}
 		@GetMapping("/patient/{stat}")
 		public List<Patients> getbystat(@PathVariable String stat) {
-
 			return this.patiservice.getstatus(stat);
 		}
 		@GetMapping("/pat/{doctorid}")
@@ -178,6 +174,11 @@ import com.HospitalMangagmentSystem.demo.Service.PatientService;
 		public Patients FinishPatient(@PathVariable int id){
 
 			return this.patiservice.FinishPatient(id);
+		}
+		@PutMapping("/Patient/Payment/{id}")
+		@Transactional
+		public Patients updatepStatus(@RequestBody PatientDto pati, @PathVariable int id) {
+			return this.patiservice.updatepStatus(pati, id);
 		}
 
 	}

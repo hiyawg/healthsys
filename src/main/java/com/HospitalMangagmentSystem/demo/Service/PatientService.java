@@ -1,12 +1,11 @@
 package com.HospitalMangagmentSystem.demo.Service;
 
-import java.util.List;
-
-import org.springframework.stereotype.Service;
-
 import com.HospitalMangagmentSystem.demo.Dto.PatientDto;
 import com.HospitalMangagmentSystem.demo.domain.Patients;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 
 @Service
@@ -28,7 +27,6 @@ public interface PatientService {
 	List<Patients> getTod1(int doctorid);
 	Patients checkInPateint(int id);
 	Patients getonepatient(int id);
-	   
 	Patients createpatient(PatientDto pati);
 	void deletepatient(int id);
 	Patients ubdatepatient(PatientDto pati , int id);
@@ -41,4 +39,5 @@ public interface PatientService {
 	Patients addRoom(PatientDto pati,int id);
 	Patients addRooms(PatientDto patientDto, int id);
 	Patients FinishPatient(int id);
+	Patients updatepStatus(PatientDto patientDto, int id);
 }

@@ -16,7 +16,6 @@ import java.util.List;
 @RestController
 public class AppointementController {
 
-    //appointment
     @Autowired
     AppointementService appsrvice ;
     @GetMapping("/appointement")
@@ -32,6 +31,12 @@ public class AppointementController {
     public List<Appointement> getAppByPid(@PathVariable String pid){
         return this.appsrvice.getAppByPid(pid);
     }
+
+    @GetMapping("/appointment/{doctorid}")
+    public List<Appointement> getByDoctorid(@PathVariable String doctorid){
+        return this.appsrvice.getByDoctorid(doctorid);
+    }
+
     @PostMapping("/appointement/")
     @Transactional
     public ResponseEntity<Object> createappointement(@RequestBody AppointementDto appdto) {

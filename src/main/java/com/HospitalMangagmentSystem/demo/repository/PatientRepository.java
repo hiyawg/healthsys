@@ -9,6 +9,7 @@ package com.HospitalMangagmentSystem.demo.repository;
 
 @Repository
 	public interface PatientRepository extends JpaRepository<Patients,Integer>{
+
 	@Query("SELECT a FROM Patients a WHERE a.status = ?1")
    	List<Patients> findByName(String status);
 

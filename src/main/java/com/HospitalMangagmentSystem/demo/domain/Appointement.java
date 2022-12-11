@@ -26,6 +26,7 @@ public class Appointement extends AuditModel {
     private String status;
     private Date aDate;
     private String pid;
+    private String doctorid;
 
     @OneToOne
     private Patients patient;
@@ -72,6 +73,18 @@ public class Appointement extends AuditModel {
 
     public void setPid(String pid) {
         this.pid = pid;
+    }
+
+    public String getDoctorid() {
+        return doctorid;
+    }
+
+    public void setDoctorid(String doctorid) {
+        this.doctorid = doctorid;
+    }
+
+    public Patients getPatient() {
+        return patient;
     }
 
     @Size(max = 50)

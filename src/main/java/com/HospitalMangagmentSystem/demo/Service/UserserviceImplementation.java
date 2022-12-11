@@ -1,20 +1,16 @@
 package com.HospitalMangagmentSystem.demo.Service;
 
-import com.HospitalMangagmentSystem.demo.domain.Role;
+import com.HospitalMangagmentSystem.demo.Exception.DataNotFoundException;
+import com.HospitalMangagmentSystem.demo.Security.jwt.message.request.SignUpForm;
 import com.HospitalMangagmentSystem.demo.domain.Rolename;
 import com.HospitalMangagmentSystem.demo.domain.User;
-import com.HospitalMangagmentSystem.demo.Exception.DataNotFoundException;
-
-import com.HospitalMangagmentSystem.demo.Security.jwt.message.request.SignUpForm;
 import com.HospitalMangagmentSystem.demo.repository.RoleRepository;
 import com.HospitalMangagmentSystem.demo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Component
 public class UserserviceImplementation implements UserService{
@@ -64,7 +60,7 @@ public class UserserviceImplementation implements UserService{
     }
     @Override
     public List<User> getbyrole(String department) {
-        return userep.findUserByRolesAndDepartment(department,rolrep.findByName(Rolename.ROLE_DOCTOR).orElse(null));
+        return userep.findUserByRolesAndDepartment(rolrep.findByName(Rolename.ROLE_DOCTOR).orElse(null),department);
     }
 
     @Override
