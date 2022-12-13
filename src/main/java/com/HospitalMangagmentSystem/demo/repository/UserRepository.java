@@ -14,19 +14,16 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 
     Optional<User> findByUsername(String username);
 
-    User findByLastAndFirst(String lastName,String firstname);
+    User findByLastAndFirst(String lastName, String firstname);
 
-    List<User> findUserByRolesAndDepartment(Role roles,String department);
+    List<User> findUserByRolesAndDepartment(Role roles, String department);
+
     List<User> findUserByRoles(Role roles);
-
 
     @Query("SELECT a FROM User a WHERE a.dType = ?1")
     List<User> findByName(String dType);
 
-
-
     Boolean existsByUsername(String username);
+
     Boolean existsByEmail(String email);
 }
-
-

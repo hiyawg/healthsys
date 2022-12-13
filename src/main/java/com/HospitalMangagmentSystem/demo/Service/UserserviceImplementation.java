@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -29,12 +30,13 @@ public class UserserviceImplementation implements UserService {
 
     @Override
     public List<User> getbyroleNp() {
-        return userep.findUserByRoles(rolrep.findByName(Rolename.ROLE_DOCTOR).orElse(
-                rolrep.findByName(Rolename.ROLE_ADMIN).orElse(rolrep.findByName(Rolename.ROLE_RECEPTION).orElse(
-                        rolrep.findByName(Rolename.ROLE_RAD).orElse(
-                                rolrep.findByName(Rolename.ROLE_LAB).orElse(
-                                        rolrep.findByName(Rolename.ROLE_ROOM).orElse(
-                                                rolrep.findByName(Rolename.ROLE_USER).orElse(null))))))));
+        List<User> ar = userep.findAll();
+        List<User> pat = userep.findUserByRoles(rolrep.findByName(Rolename.ROLE_PATIENT).orElse(null));
+        pat.forEach(element -> {
+            ar.remove(element);
+        });
+        return ar;
+
     }
 
     @Override
