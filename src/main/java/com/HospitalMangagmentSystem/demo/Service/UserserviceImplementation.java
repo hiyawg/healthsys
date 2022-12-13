@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-public class UserserviceImplementation implements UserService{
+public class UserserviceImplementation implements UserService {
     @Autowired
     UserRepository userep;
 
@@ -28,49 +28,65 @@ public class UserserviceImplementation implements UserService{
     }
 
     @Override
+    public List<User> getbyroleNp() {
+        return userep.findUserByRoles(rolrep.findByName(Rolename.ROLE_DOCTOR).orElse(
+                rolrep.findByName(Rolename.ROLE_ADMIN).orElse(rolrep.findByName(Rolename.ROLE_RECEPTION).orElse(
+                        rolrep.findByName(Rolename.ROLE_RAD).orElse(
+                                rolrep.findByName(Rolename.ROLE_LAB).orElse(
+                                        rolrep.findByName(Rolename.ROLE_ROOM).orElse(
+                                                rolrep.findByName(Rolename.ROLE_USER).orElse(null))))))));
+    }
+
+    @Override
     public User getoneuser(int id) {
-        User use=userep.findById(id).orElseThrow(()->
-                new DataNotFoundException("patient with id " + id + " not found") );
+        User use = userep.findById(id)
+                .orElseThrow(() -> new DataNotFoundException("patient with id " + id + " not found"));
 
         return use;
     }
+
     @Override
     public String getoneuserdType(String username) {
-        User use=userep.findByUsername(username).orElseThrow(()->
-                new DataNotFoundException(" with id " + username + " not found") );
+        User use = userep.findByUsername(username)
+                .orElseThrow(() -> new DataNotFoundException(" with id " + username + " not found"));
 
         return use.dType;
     }
+
     @Override
     public Boolean getoneuserStatus(String username) {
-        User use=userep.findByUsername(username).orElseThrow(()->
-                new DataNotFoundException(" with id " + username + " not found") );
+        User use = userep.findByUsername(username)
+                .orElseThrow(() -> new DataNotFoundException(" with id " + username + " not found"));
         return use.getStatus();
     }
+
     @Override
     public int getoneuserid(String username) {
-        User use=userep.findByUsername(username).orElseThrow(()->
-                new DataNotFoundException(" with username " + username + " not found") );
+        User use = userep.findByUsername(username)
+                .orElseThrow(() -> new DataNotFoundException(" with username " + username + " not found"));
 
         return use.getId();
     }
+
     @Override
     public List<User> getdType(String dType) {
         return userep.findByName(dType);
     }
+
     @Override
     public List<User> getbyrole(String department) {
-        return userep.findUserByRolesAndDepartment(rolrep.findByName(Rolename.ROLE_DOCTOR).orElse(null),department);
+        return userep.findUserByRolesAndDepartment(rolrep.findByName(Rolename.ROLE_DOCTOR).orElse(null), department);
     }
 
     @Override
     public List<User> getbyroleDoctor() {
         return userep.findUserByRoles(rolrep.findByName(Rolename.ROLE_DOCTOR).orElse(null));
     }
+
     @Override
     public User updateauser(int id, SignUpForm userdto) {
-        User user =userep.findById(id).orElseThrow(()->
-                new DataNotFoundException("patient with id " + id + " not found") );
+        User user = userep.findById(id)
+                .orElseThrow(() -> new DataNotFoundException("patient with id " + id + " not found"));
         user.setFirst(userdto.getFirst());
         user.setLast(userdto.getLast());
         user.setGender(userdto.getGender());
@@ -88,22 +104,22 @@ public class UserserviceImplementation implements UserService{
         userep.save(user);
         return user;
     }
+
     @Override
     public User updateUserStatus(int id, SignUpForm userdto) {
-        User user =userep.findById(id).orElseThrow(()->
-                new DataNotFoundException("patient with id " + id + " not found") );
+        User user = userep.findById(id)
+                .orElseThrow(() -> new DataNotFoundException("patient with id " + id + " not found"));
         user.setStatus(userdto.getStatus());
         userep.save(user);
         return user;
     }
+
     @Override
     public void delteuser(int id) {
-            // TODO Auto-generated method stub
-        User use=userep.findById(id).orElseThrow(()->
-                new DataNotFoundException("patient with id " + id + " not found") );
-            userep.delete(use);
-        }
-
-
+        // TODO Auto-generated method stub
+        User use = userep.findById(id)
+                .orElseThrow(() -> new DataNotFoundException("patient with id " + id + " not found"));
+        userep.delete(use);
+    }
 
 }
