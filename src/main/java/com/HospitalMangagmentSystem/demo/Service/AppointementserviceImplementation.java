@@ -10,7 +10,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
 @Component
 public class AppointementserviceImplementation implements AppointementService{
@@ -32,6 +31,10 @@ public class AppointementserviceImplementation implements AppointementService{
         return apprep.findByPatientId(pid);
     }
     @Override
+    public List<Appointement> getByDoctorid(String doctorid){
+        return apprep.findByDoctorid(doctorid);
+    }
+    @Override
     @Transactional
     public Appointement createAppointement(AppointementDto appd) {
         Appointement app = new Appointement();
@@ -42,6 +45,7 @@ public class AppointementserviceImplementation implements AppointementService{
          app.setEmail(appd.getEmail());
          app.setStatus(appd.getStatus());
          app.setPid(appd.getPid());
+         app.setDoctorid(appd.getDoctorid());
         return apprep.save(app);
     }
     @Override

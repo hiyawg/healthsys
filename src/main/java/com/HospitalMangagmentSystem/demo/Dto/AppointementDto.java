@@ -33,6 +33,12 @@ public class AppointementDto {
     private Date aDate;
     private String pid;
     private String patient;
+    private String doctorid;
+
+
+    public String getDoctorid() {
+        return doctorid;
+    }
 
     public Date getDate() {
         return date;

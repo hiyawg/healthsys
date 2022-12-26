@@ -13,6 +13,7 @@ public interface AppointementService {
     // Appointement getoneApointment(int id);
     List<Appointement> getAppByPAndS(String pid,String status);
     List<Appointement> getAppByPid(String pid);
+    List<Appointement> getByDoctorid(String doctorid);
     Appointement createAppointement(AppointementDto appd);
     void deleteAppointement(int id);
     Appointement ubdateAppointement(AppointementDto appd , int id);

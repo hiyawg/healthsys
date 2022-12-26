@@ -1,14 +1,13 @@
 package com.HospitalMangagmentSystem.demo.domain;
 
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
-
-import javax.persistence.*;
-
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import javax.persistence.*;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 
 @Entity
@@ -38,7 +37,15 @@ public class Patients{
 	private int userid;
 	private int doctorid;
 	private String address;
+	private String pStatus;
 
+	public String getpStatus() {
+		return pStatus;
+	}
+
+	public void setpStatus(String pStatus) {
+		this.pStatus = pStatus;
+	}
 
 	public String getAddress() {
 		return address;

@@ -1,9 +1,9 @@
 package com.HospitalMangagmentSystem.demo.Dto;
 
 
-import java.sql.Date;
-
 import com.fasterxml.jackson.annotation.JsonFormat;
+
+import java.sql.Date;
 
 public class PatientDto {
 
@@ -29,6 +29,12 @@ public class PatientDto {
 	private String room;
 	private int userid;
 	private int doctorid;
+	private String pStatus;
+
+
+	public String getpStatus() {
+		return pStatus;
+	}
 
 	public int getDoctorid() {
 		return doctorid;

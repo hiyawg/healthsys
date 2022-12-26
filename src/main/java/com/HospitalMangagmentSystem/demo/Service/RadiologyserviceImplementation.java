@@ -2,9 +2,7 @@ package com.HospitalMangagmentSystem.demo.Service;
 
 import com.HospitalMangagmentSystem.demo.Dto.RadiologyDto;
 import com.HospitalMangagmentSystem.demo.Exception.DataNotFoundException;
-import com.HospitalMangagmentSystem.demo.domain.Patients;
 import com.HospitalMangagmentSystem.demo.domain.Radiology;
-import com.HospitalMangagmentSystem.demo.domain.User;
 import com.HospitalMangagmentSystem.demo.repository.RadiologyRepository;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -2,7 +2,10 @@ package com.HospitalMangagmentSystem.demo.Service;
 
 import java.util.List;
 
-import com.HospitalMangagmentSystem.demo.Dto.*;
+import com.HospitalMangagmentSystem.demo.Dto.DoctorDto;
+import com.HospitalMangagmentSystem.demo.Dto.DoctorvisitDto;
+import com.HospitalMangagmentSystem.demo.Dto.VisitBasic;
+import com.HospitalMangagmentSystem.demo.Dto.VisitNote;
 import com.HospitalMangagmentSystem.demo.domain.DoctorsVisit;
 import com.HospitalMangagmentSystem.demo.domain.User;
 import com.HospitalMangagmentSystem.demo.constants.MedicalUtil;
